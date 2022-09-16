@@ -20,26 +20,7 @@ It literally helps you find code that can fail after migration to newer PHP vers
 
 # Installation
 
-## Phar file
-
-1. Just download a phar from [releases page](https://github.com/wapmorgan/PhpDeprecationDetector/releases) and make executable
-  ```sh
-  chmod +x phpdd-x.x.x.phar
-  ```
-
-2. a. **Local installation**: use it from current folder:
-    ```php
-    ./phpdd-x.x.x.phar -h
-    ```
-
-   b. **Global installation**: move it in to one of folders listed in your `$PATH` and run from any folder:
-    ```sh
-    sudo mv phpdd-x.x.x.phar /usr/local/bin/phpdd
-    phpdd -h
-    ```
-
 ## Composer
-Another way to install _phpdd_ is via composer.
 
 1. Install composer:
   ```sh
@@ -48,7 +29,7 @@ Another way to install _phpdd_ is via composer.
 
 2. Install phpdd in global composer dir:
   ```sh
-  ./composer.phar global require wapmorgan/php-deprecation-detector dev-master
+  ./composer.phar global require ixa-devstuff/php-deprecation-detector dev-master
   ```
 
 3. Run from any folder:

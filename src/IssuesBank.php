@@ -1,5 +1,5 @@
 <?php
-namespace wapmorgan\PhpCodeFixer;
+namespace ixaDevstuff\PhpDeprecationDetector;
 
 class IssuesBank {
     /** @var array<string $version, array<string $type, array $issues>> */

@@ -1,32 +1,30 @@
 #!/usr/bin/env php
 <?php
 use Symfony\Component\Console\Application;
-use wapmorgan\PhpCodeFixer\PhpCodeFixer;
-use wapmorgan\PhpCodeFixer\ScanCommand;
+use ixaDevstuff\PhpDeprecationDetector\PhpCodeFixer;
+use ixaDevstuff\PhpDeprecationDetector\ScanCommand;
 
-function init_composer($rootDir) {
-    static $paths = [
-        // as a root package or phar
-        '/../vendor/autoload.php',
-        // as a dependency from bin
-        '/../autoload.php',
-        // as a dependency from package folder
-        '/../../../autoload.php',
-    ];
-
-    foreach ($paths as $path) {
-        if (file_exists($rootDir.$path)) {
-            require_once $rootDir.$path;
-            return true;
-        }
-    }
-    return false;
+if (is_dir($vendor = __DIR__ . '/../vendor')) {
+    require $vendor . '/autoload.php';
+} elseif (is_dir($vendor = __DIR__ . '/../../..')) {
+    require $vendor . '/autoload.php';
+} else {
+    die(
+        'You must set up the project dependencies.' . PHP_EOL .
+        'To do that, run the following commands:' . PHP_EOL . PHP_EOL .
+        '$ curl -s http://getcomposer.org/installer | php' . PHP_EOL .
+        '$ php composer.phar install' . PHP_EOL
+    );
 }
-if (!init_composer(__DIR__)) die('Run `composer install` firstly.'.PHP_EOL);
 
-$version = file_exists(__DIR__.'/version.txt') ? trim(file_get_contents(__DIR__.'/version.txt')) : PhpCodeFixer::VERSION;
+if (!class_exists(Application::class)) {
+    die(
+        'You must install the symfony/console package in order ' .
+        'to use the command-line tool.' . PHP_EOL
+    );
+}
 
-$app = new Application('phpcf', $version);
+$app = new Application('phpdd', PhpCodeFixer::VERSION);
 $command = new ScanCommand();
 $app->add($command);
 $app->setDefaultCommand($command->getName(), true);

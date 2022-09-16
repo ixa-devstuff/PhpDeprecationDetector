@@ -1,5 +1,5 @@
 <?php
-namespace wapmorgan\PhpCodeFixer;
+namespace ixaDevstuff\PhpDeprecationDetector;
 
 /**
  * @test 7.2

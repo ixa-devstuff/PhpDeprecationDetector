@@ -1,5 +1,5 @@
 <?php
-namespace wapmorgan\PhpCodeFixer;
+namespace ixaDevstuff\PhpDeprecationDetector;
 
 /**
  * Checks that value is present in column of two-dimensional array
